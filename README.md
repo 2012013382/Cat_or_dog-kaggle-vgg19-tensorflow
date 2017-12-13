@@ -4,6 +4,7 @@ A simple Tensorflow code for fine-tune VGG-16 to solve 'cat or dog' task in kagg
 ## Requirements
 
 Tensorflow > 1.3
+
 Python > 2.7
 
 vgg_16.ckpt from Tensorflow slim pre-trained model https://github.com/tensorflow/models/tree/master/research/slim
