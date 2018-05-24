@@ -1,4 +1,4 @@
-# Cat_or_dog-kaggle-vgg16-tensorflow
+# Cat_or_dog-kaggle-vgg19-tensorflow
 A simple Tensorflow code for fine-tuning VGG-16 to solve 'cat or dog' task in kaggle.
 
 ## Requirements
@@ -7,11 +7,11 @@ Tensorflow > 1.3
 
 Python > 2.7
 
-vgg_16.ckpt from Tensorflow slim pre-trained model https://github.com/tensorflow/models/tree/master/research/slim
+vgg_19.ckpt from Tensorflow slim pre-trained model https://github.com/tensorflow/models/tree/master/research/slim
 
 Data sets from kaggle https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition/data
 
-You should place vgg_16.ckpt in 'check_point' file folder and data in the 'data' file folder
+You should place vgg_19.ckpt in 'check_point' file folder and data in the 'data' file folder
 
 ## Details
 
