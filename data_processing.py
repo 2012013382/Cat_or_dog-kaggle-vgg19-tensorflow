@@ -13,7 +13,7 @@ TEST_DATA_PATH = 'data/test/'
 IMG_HEIGHT = int(224) #image shape [224,224,3] to fit VGG_16 input shape.
 IMG_WIDTH = int(224)
 IMG_CHANNELS = 3
-NUM_FILES_DATASET = 25000 #data size 25000; train data size 17500; validation data size 7500
+NUM_FILES_DATASET = 25000 #data size 25000; train data size 17500; test data size 7500
 VALIDATION_SET_FRACTION = 0.3 #validation size properbility
 NUM_TRAIN_EXAMPLES = int((1 - VALIDATION_SET_FRACTION) * NUM_FILES_DATASET)
 NUM_VALIDATION_EXAMPLES = int((VALIDATION_SET_FRACTION) * NUM_FILES_DATASET)
@@ -25,6 +25,8 @@ def pre_processing(data_set='train',batch_size=32):
     if data_set is 'train':
         images, labels = manage_images.read_images(TRAIN_DATA_PATH, IMG_CLASSES,
                                                    IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS)
+        #Substract mean value
+        train_mean = np.mean(images, axis=0)
         # Random sample
         validation_images = []
         validation_labels = []
@@ -34,10 +36,10 @@ def pre_processing(data_set='train',batch_size=32):
         idx = np.random.permutation(len(images))
         for i in idx:
             if i < validation_size:
-                validation_images.append(images[i])
+                validation_images.append(images[i] - train_mean)
                 validation_labels.append(labels[i])
             else:
-                train_images.append(images[i])
+                train_images.append(images[i] - train_mean)
                 train_labels.append(labels[i])
 
         train_batch_num = NUM_TRAIN_EXAMPLES // batch_size
@@ -63,7 +65,10 @@ def pre_processing(data_set='train',batch_size=32):
         return batch_train_set, batch_validation_set, image_num
     elif data_set is 'test':
         images = manage_images.read_images_kaggle_result(TEST_DATA_PATH, IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS)
-
+        
+        #Substract mean
+        mean = np.mean(images, axis=0)
+        images = images - mean
         batch_test_images = []
         batch_num = NUM_KAGGLE_TEST // batch_size
 
@@ -75,5 +80,3 @@ def pre_processing(data_set='train',batch_size=32):
         batch_test_set = {'images': batch_test_images}
 
         return batch_test_set
-
-
