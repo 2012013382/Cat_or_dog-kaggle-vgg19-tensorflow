@@ -21,7 +21,7 @@ def read_images(path, classes, img_height = 224, img_width = 224, img_channels =
         images[i, :, :, :] = img
         labels[i] = classes.index(filename[0:3])    # Luckily both 'cat' and 'dog' have 3 characters
         # Convert from [0, 255] -> [-0.5, 0.5] floats.
-        images[i, :, :, :] = images[i, :, :, :] * (1. / 255) - 0.5
+        #images[i, :, :, :] = images[i, :, :, :] * (1. / 255) - 0.5
         one_hot_labels = np.zeros((num_files, len(classes)))
         if i % 1000 == 0:
            print('Load the %d image of 25000.' % (i))
@@ -41,7 +41,7 @@ def read_images_kaggle_result(path, img_height = 224, img_width = 224, img_chann
         img = imresize(img, (img_height, img_width)) #resize image to 224x224
         img.astype(np.float32)
         images[int(filename[:-4]) - 1, :, :, :] = img
-        images[int(filename[:-4]) - 1, :, :, :] = images[int(filename[:-4]) - 1, :, :, :] * (1. / 255) - 0.5
+        #images[int(filename[:-4]) - 1, :, :, :] = images[int(filename[:-4]) - 1, :, :, :] * (1. / 255) - 0.5
         if i % 1000 == 0:
            print ('Load the %d image of 12500.'%(i))
     return images
