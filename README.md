@@ -1,5 +1,5 @@
 # Cat_or_dog-kaggle-vgg19-tensorflow
-A simple Tensorflow code for fine-tuning VGG-16 to solve 'cat or dog' task in kaggle.
+A simple Tensorflow code for fine-tuning VGG-19 to solve 'cat or dog' task in kaggle.
 
 ## Requirements
 
