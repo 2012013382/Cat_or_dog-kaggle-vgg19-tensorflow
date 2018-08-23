@@ -34,7 +34,7 @@ with tf.Graph().as_default():
     images = tf.placeholder(tf.float32, [BATCH_SIZE, 224, 224, 3])
     labels = tf.placeholder(tf.float32, [BATCH_SIZE, len(data_processing.IMG_CLASSES)])
     keep_prob = tf.placeholder(tf.float32)
-    with nets.vgg.vgg_arg_scope():
+    with slim.arg_scope(nets.vgg.vgg_arg_scope()):
         logits, _ = nets.vgg.vgg_19(inputs=images, num_classes=2, dropout_keep_prob=keep_prob, is_training=True)
     variables_to_restore = slim.get_variables_to_restore(exclude=['vgg_19/fc8'])
     restorer = tf.train.Saver(variables_to_restore)
